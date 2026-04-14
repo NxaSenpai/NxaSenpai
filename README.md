@@ -1,85 +1,168 @@
-<!-- PROFILE BANNER -->
+<!-- ============================================== -->
+<!-- 🎉 AUTO SEASONAL THEMES - Changes by date!    -->
+<!-- Jan 20-Feb 20: Lunar New Year                  -->
+<!-- Dec 1-31: Christmas                            -->
+<!-- Dec 31-Jan 15: New Year                        -->
+<!-- Apr 13-16: Khmer New Year                      -->
+<!-- Oct 1-31: Halloween                            -->
+<!-- ============================================== -->
+
+<!-- Auto Theme Script -->
+<div id="seasonal-header">
+  <script>
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    
+    let theme = 'default';
+    
+    // Determine theme based on date
+    if ((month === 1 && day >= 20) || (month === 2 && day <= 20)) {
+      theme = 'lunar';
+    } else if (month === 12 || (month === 1 && day <= 15)) {
+      theme = month === 12 ? 'christmas' : 'newyear';
+    } else if (month === 4 && day >= 13 && day <= 16) {
+      theme = 'khmer';
+    } else if (month === 10) {
+      theme = 'halloween';
+    }
+    
+    // Theme configurations
+    const themes = {
+      lunar: {
+        colors: '0:8B0000,50:FFD700,100:FF4500',
+        text: '🐉 Happy Lunar New Year!',
+        height: '200'
+      },
+      christmas: {
+        colors: '0:165B33,50:BB2528,100:165B33',
+        text: '🎄 Merry Christmas!',
+        height: '200'
+      },
+      newyear: {
+        colors: '0:1a1a2e,50:16213e,100:0f3460',
+        text: '🎆 Happy New Year!',
+        height: '200'
+      },
+      khmer: {
+        colors: '0:032B44,50:1C768F,100:FA991C',
+        text: '🪷 សួស្ដីឆ្នាំថ្មី!',
+        height: '200'
+      },
+      halloween: {
+        colors: '0:1a1a1a,50:ff6600,100:4a0080',
+        text: '🎃 Happy Halloween!',
+        height: '200'
+      },
+      default: {
+        colors: '0:0f0f23,50:1a1a3e,100:2d2d5a',
+        text: 'Hey there! 👋',
+        height: '180'
+      }
+    };
+    
+    const config = themes[theme];
+    const headerUrl = `https://capsule-render.vercel.app/api?type=waving&color=${config.colors}&height=${config.height}&section=header&text=${encodeURIComponent(config.text)}&fontSize=40&fontColor=ffffff&animation=fadeIn`;
+    
+    document.write(`<p align="center"><img src="${headerUrl}" /></p>`);
+  </script>
+</div>
+
+<!-- Fallback for environments that don't support JavaScript -->
+<noscript>
+  <p align="center">
+    <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0f23,50:1a1a3e,100:2d2d5a&height=180&section=header&text=Hey%20there!%20👋&fontSize=45&fontColor=ffffff&animation=fadeIn" />
+  </p>
+</noscript>
+
+<h2 align="center">I'm <b>NxaSenpai</b></h2>
+<p align="center"><i>Just a guy who likes to code things ☕</i></p>
+
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=Welcome%20to%20My%20Profile&fontSize=55&fontColor=ffffff&animation=fadeIn" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=18&duration=2500&pause=1000&color=6B7280&center=true&vCenter=true&width=450&lines=Web+Developer;Still+learning+everyday;Building+stuff+for+fun" />
 </p>
 
-<h1 align="center">Hello 👋, I'm NxaSenpai</h1>
-<h3 align="center">🚀 Software Engineer | 🎮 Unity Game Developer (C#) | 💻 Web Developer</h3>
-
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=2000&pause=800&center=true&vCenter=true&width=600&lines=Java+%7C+Vue.js+%7C+Spring+Boot;C%23+%7C+Unity+Game+Development;Full-Stack+Developer;Roguelike+%26+Zombie+Game+Enthusiast" />
-</p>
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=NxaSenpai&label=Profile%20Views&color=0f2027&style=for-the-badge" />
+  <img src="https://komarev.com/ghpvc/?username=NxaSenpai&label=Visitors&color=555555&style=flat" />
 </p>
 
 ---
 
-## 👨‍💻 About Me
+### 🙋‍♂️ About Me
 
-- 🔭 Currently learning: **Java, Spring Boot, Vue.js & C# (Unity)**
-- 🎯 Goal: **Professional Software Engineer & Game Developer**
-- 🎮 Passion: **Roguelike, Zombie & Horror Games**
-- 💡 Interested in: **System Design, Web Applications & Game Development**
-- 🌱 Always learning, building, and improving
-
----
-
-## 🛠️ Tech Stack
-
-<p>
-  <img src="https://skillicons.dev/icons?i=java,cpp,cs,js,html,css,vue,nodejs,express,mysql,git,github,unity,vscode,idea" />
-</p>
+```text
+🌱  Currently learning Java, Spring Boot & Vue.js
+💻  Enjoy building web applications
+🎮  Love playing roguelike & horror games
+☕  Just a guy who love matcha
+```
 
 ---
 
-## 📊 Most Used Languages
+### 🧰 Most Tools and Language I Use
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=cpp" width="60" />
-  <img src="https://skillicons.dev/icons?i=cs" width="60" />
-  <img src="https://skillicons.dev/icons?i=java" width="60" />
-  <img src="https://skillicons.dev/icons?i=html" width="60" />
-  <img src="https://skillicons.dev/icons?i=css" width="60" />
-  <img src="https://skillicons.dev/icons?i=javascript" width="60" />
+  <img src="https://skillicons.dev/icons?i=java,vue,js,html,css,mysql,rust,idea,github,godot,vscode&theme=dark" />
 </p>
+
+---
+
+### 📂 What I'm Working On
+
+| Project | Status |
+|---------|--------|
+| Spring Boot Auth System | ✅ Done |
+| Vue.js E-commerce Frontend | ✅ Done |
+| Node.js CRUD API | ✅ Done |
+| Personal Portfolio | 🔨 In Progress |
+
+---
+
+### 📊 Stats
+
+<div align="center">
+  <!-- Primary stats with fallback -->
+  <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=NxaSenpai&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9&count_private=true&include_all_commits=true&cache_seconds=86400" height="170" />
+  
+  <!-- Languages with fallback -->
+  <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=NxaSenpai&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9&langs_count=8&exclude_repo=NxaSenpai&cache_seconds=86400" height="170" />
+</div>
+
+
+<div align="center">
+<br>
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=NxaSenpai&theme=github_dark" />
+
+
+</div>
+
+
+---
+
+### 📫 Reach Me
 
 <p align="center">
-  <b>C++ | C# | Java | HTML | CSS | JavaScript</b>
+  <a href="mailto:nxasenpai007@gmail.com">
+    <img src="https://img.shields.io/badge/Email-nxasenpai007%40gmail.com-333333?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
 </p>
 
 ---
-
-## 🚧 Current Projects
-
-- ✅ Spring Boot Authentication System  
-- ✅ Vue.js E-commerce Frontend  
-- ✅ CRUD API (Node.js & Express)  
-- 🎮 Unity Zombie Game Prototype (C#)  
-- 🌐 Personal Portfolio Website  
-
----
-
-## 📈 GitHub Stats
 
 <p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=NxaSenpai&theme=github_dark" />
+  <i>Thanks for stopping by! Have a great day 🌟</i>
 </p>
 
----
+<div id="seasonal-footer">
+  <script>
+    const footerColors = theme === 'default' ? '0:2d2d5a,100:0f0f23' : themes[theme].colors;
+    const footerUrl = `https://capsule-render.vercel.app/api?type=waving&color=${footerColors}&height=100&section=footer`;
+    document.write(`<p align="center"><img src="${footerUrl}"/></p>`);
+  </script>
+</div>
 
-## 📬 Contact Me
-
-- 📧 Email: **nxasenpai007@gmail.com**
-- 🌐 GitHub: https://github.com/NxaSenpai
-
----
-
-<h2 align="center">
-Thanks for visiting my profile 🚀
-</h2>
-
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2c5364,100:0f2027&height=150&section=footer"/>
-</p>
+<noscript>
+  <p align="center">
+    <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2d2d5a,100:0f0f23&height=100&section=footer"/>
+  </p>
+</noscript>
