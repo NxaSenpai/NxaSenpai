@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch, provide, computed } from 'vue'
+import { ref, onMounted, watch, provide } from 'vue'
 import ProjectCard from '../components/ProjectCard.vue'
 import SkillsSection from '../components/SkillsSection.vue'
 import '../assets/styles.css'
@@ -8,97 +8,6 @@ const isVisible = ref(false)
 const isDarkMode = ref(true)
 
 provide('isDarkMode', isDarkMode)
-
-// Seasonal theme detection
-const currentTheme = computed(() => {
-  const now = new Date()
-  const month = now.getMonth() // 0-11
-  const day = now.getDate()
-  
-  // Halloween: October 15 - November 2
-  if ((month === 9 && day >= 15) || (month === 10 && day <= 2)) {
-    return 'halloween'
-  }
-  
-  // Christmas: December 1 - December 31
-  if (month === 11) {
-    return 'christmas'
-  }
-  
-  // New Year: January 1 - January 7
-  if (month === 0 && day <= 7) {
-    return 'newyear'
-  }
-  
-  // Lunar New Year / Chinese New Year: Usually late Jan - mid Feb
-  // Approximating as Jan 20 - Feb 20
-  if ((month === 0 && day >= 20) || (month === 1 && day <= 20)) {
-    return 'lunar'
-  }
-  
-  // Valentine's Day: February 7 - February 14
-  if (month === 1 && day >= 7 && day <= 14) {
-    return 'valentine'
-  }
-  
-  // Spring: March - May
-  if (month >= 2 && month <= 4) {
-    return 'spring'
-  }
-  
-  // Summer: June - August
-  if (month >= 5 && month <= 7) {
-    return 'summer'
-  }
-  
-  // Autumn/Fall: September - November (before Halloween)
-  if (month >= 8 && month <= 10) {
-    return 'autumn'
-  }
-  
-  return 'default'
-})
-
-// Theme-specific particles
-const themeParticles = computed(() => {
-  switch (currentTheme.value) {
-    case 'halloween':
-      return ['🎃', '👻', '🦇', '🕷️', '💀', '🕸️', '🌙', '⭐']
-    case 'christmas':
-      return ['❄️', '🎄', '🎅', '⭐', '🎁', '🔔', '❄️', '✨']
-    case 'newyear':
-      return ['🎆', '🎇', '✨', '🎊', '🎉', '⭐', '🌟', '💫']
-    case 'lunar':
-      return ['🧧', '🏮', '🐉', '🎆', '🧨', '💰', '🌸', '✨']
-    case 'valentine':
-      return ['❤️', '💕', '💖', '💗', '💘', '🌹', '💝', '✨']
-    case 'spring':
-      return ['🌸', '🌺', '🌷', '🦋', '🐝', '🌼', '☘️', '🌿']
-    case 'summer':
-      return ['☀️', '🌊', '🏖️', '🌴', '🍉', '🌺', '⭐', '✨']
-    case 'autumn':
-      return ['🍂', '🍁', '🌾', '🎃', '🌰', '🍄', '🦉', '🌙']
-    default:
-      return ['✨', '⭐', '💫', '🌟', '✦', '✧', '⚡', '💎']
-  }
-})
-
-// Generate random particles
-const particles = computed(() => {
-  const items = []
-  for (let i = 0; i < 25; i++) {
-    items.push({
-      id: i,
-      emoji: themeParticles.value[i % themeParticles.value.length],
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      delay: Math.random() * 10,
-      duration: 10 + Math.random() * 15,
-      size: 0.8 + Math.random() * 1.2
-    })
-  }
-  return items
-})
 
 // Draggable snippet state
 const snippet1Position = ref({ x: 0, y: 0 })
@@ -186,8 +95,8 @@ watch(isDarkMode, () => {
 
 const applyTheme = () => {
   document.documentElement.setAttribute('data-theme', isDarkMode.value ? 'dark' : 'light')
-  document.body.style.backgroundColor = isDarkMode.value ? '#0a192f' : '#f8f9fa'
-  document.body.style.color = isDarkMode.value ? '#ccd6f6' : '#1a202c'
+  document.body.style.backgroundColor = isDarkMode.value ? '#0a0a0f' : '#f0faf0'
+  document.body.style.color = isDarkMode.value ? '#e0ffe0' : '#1a2e1a'
 }
 
 const scrollToSection = (sectionId) => {
@@ -269,33 +178,12 @@ const closeMobileMenu = () => {
 </script>
 
 <template>
-  <div class="home" :class="[
-    isDarkMode ? 'dark-mode' : 'light-mode',
-    `theme-${currentTheme}`
-  ]">
+  <div class="home" :class="isDarkMode ? 'dark-mode' : 'light-mode'">
     <!-- Animated Background -->
     <div class="animated-bg">
       <div class="gradient-orb orb-1"></div>
       <div class="gradient-orb orb-2"></div>
       <div class="gradient-orb orb-3"></div>
-      
-      <!-- Seasonal Particles -->
-      <div class="seasonal-particles">
-        <div 
-          v-for="particle in particles" 
-          :key="particle.id" 
-          class="seasonal-particle"
-          :style="{
-            left: `${particle.left}%`,
-            top: `${particle.top}%`,
-            animationDelay: `${particle.delay}s`,
-            animationDuration: `${particle.duration}s`,
-            fontSize: `${particle.size}rem`
-          }"
-        >
-          {{ particle.emoji }}
-        </div>
-      </div>
     </div>
 
 
@@ -336,7 +224,7 @@ const closeMobileMenu = () => {
       <div class="hero-content">
         <div class="text-content">
           <div class="greeting">
-            <span class="wave">👋</span> Hello, I'm
+            Hello, I'm
           </div>
           <h1 class="title">
             TANG <span class="gradient-text">Nakry</span>

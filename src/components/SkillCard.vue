@@ -22,11 +22,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div 
+  <div
     class="skill-card"
     :class="{ 'visible': isVisible }"
-    :style="{ 
-      '--skill-color': skill.color, 
+    :style="{
+      '--skill-color': skill.color,
       '--animation-delay': index * 0.1 + 's',
       '--skill-level': skill.level + '%'
     }"
@@ -49,21 +49,37 @@ onMounted(() => {
 .skill-card {
   background: var(--bg-secondary);
   padding: clamp(1.5rem, 4vw, 2.5rem);
-  border-radius: clamp(12px, 2vw, 16px);
   text-align: center;
-  border: 2px solid transparent;
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border: 2px solid var(--accent);
+  transition: all 0.15s steps(2);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    4px 4px 0 0 rgba(0,0,0,0.5),
+    0 0 12px var(--accent-glow);
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(20px);
+}
+
+.skill-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .skill-card.visible {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.4s steps(4), transform 0.4s steps(4);
   transition-delay: var(--animation-delay);
 }
 
@@ -76,18 +92,21 @@ onMounted(() => {
   height: 100%;
   background: linear-gradient(135deg, var(--skill-color), transparent);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s steps(2);
+  z-index: 0;
 }
 
 @media (hover: hover) {
   .skill-card:hover {
     border-color: var(--skill-color);
-    transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px color-mix(in srgb, var(--skill-color) 30%, transparent);
+    transform: translateY(-6px) translate(-2px, -2px);
+    box-shadow:
+      6px 6px 0 0 rgba(0,0,0,0.5),
+      0 0 25px color-mix(in srgb, var(--skill-color) 40%, transparent);
   }
 
   .skill-card:hover::before {
-    opacity: 0.15;
+    opacity: 0.12;
   }
 
   .skill-card:hover .icon-bg {
@@ -102,6 +121,8 @@ onMounted(() => {
   color: var(--skill-color);
   position: relative;
   display: inline-block;
+  z-index: 2;
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--skill-color) 50%, transparent));
 }
 
 .icon-bg {
@@ -112,40 +133,62 @@ onMounted(() => {
   width: clamp(50px, 10vw, 80px);
   height: clamp(50px, 10vw, 80px);
   background: var(--skill-color);
-  border-radius: 50%;
-  opacity: 0.1;
-  transition: all 0.3s ease;
+  opacity: 0.08;
+  transition: all 0.2s steps(2);
+  z-index: -1;
 }
 
 .skill-card h3 {
-  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-size: clamp(0.65rem, 1.8vw, 0.9rem);
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
   color: var(--text-primary);
   font-weight: 700;
+  font-family: var(--font-heading);
+  position: relative;
+  z-index: 2;
 }
 
 .skill-level {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .skill-bar {
   width: 100%;
-  height: clamp(4px, 1vw, 6px);
+  height: clamp(8px, 1.5vw, 12px);
   background: var(--bg-tertiary);
-  border-radius: 10px;
   overflow: hidden;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255,255,255,0.1);
+  position: relative;
+  box-shadow: inset 0 2px 0 rgba(0,0,0,0.4);
 }
 
 .skill-progress {
   height: 100%;
-  background: linear-gradient(90deg, var(--skill-color), var(--accent));
+  background: repeating-linear-gradient(
+    90deg,
+    var(--skill-color) 0px,
+    var(--skill-color) 6px,
+    color-mix(in srgb, var(--skill-color) 60%, #000) 6px,
+    color-mix(in srgb, var(--skill-color) 60%, #000) 8px
+  );
   width: 0;
-  border-radius: 10px;
   box-shadow: 0 0 10px var(--skill-color);
-  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 1.2s steps(12);
+  position: relative;
+}
+
+.skill-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: rgba(255,255,255,0.2);
 }
 
 .skill-progress.animate {
@@ -153,16 +196,16 @@ onMounted(() => {
 }
 
 .skill-percentage {
-  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  font-size: clamp(0.6rem, 1.2vw, 0.75rem);
   color: var(--skill-color);
   font-weight: 700;
-  font-family: 'Fira Code', monospace;
+  font-family: var(--font-heading);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--skill-color) 50%, transparent);
 }
 
-/* Touch devices - disable hover effects */
 @media (hover: none) {
   .skill-card:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
   }
 }
 </style>

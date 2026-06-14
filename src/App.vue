@@ -7,7 +7,7 @@ import HomeView from './views/HomeView.vue'
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 * {
   margin: 0;
@@ -20,38 +20,42 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Fira Code', 'Courier New', monospace;
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
+  image-rendering: pixelated;
 }
 
 #app {
-
   width: 100%;
   min-height: 100vh;
 }
 
-/* Global scrollbar styles */
+/* Retro scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a192f;
+  background: #0a0a0a;
+  border-left: 2px solid #1a1a2e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #64ffda;
-  border-radius: 5px;
+  background: #39ff14;
+  border: 2px solid #0a0a0a;
+  box-shadow: inset 0 0 6px rgba(57, 255, 20, 0.5);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00d9ff;
+  background: #00ffff;
+  box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.7);
 }
 
-/* Selection color */
+/* Retro selection */
 ::selection {
-  background: rgba(100, 255, 218, 0.3);
-  color: #64ffda;
+  background: rgba(57, 255, 20, 0.4);
+  color: #39ff14;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
 }
 </style>

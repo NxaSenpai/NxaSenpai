@@ -301,8 +301,8 @@ onUnmounted(() => {
 }
 
 .section-title {
-  font-size: clamp(1.5rem, 5vw, 3rem);
-  font-weight: 800;
+  font-size: clamp(1rem, 3.5vw, 1.8rem);
+  font-weight: 700;
   margin-bottom: clamp(1.5rem, 4vw, 2rem);
   color: var(--text-primary);
   display: flex;
@@ -310,22 +310,32 @@ onUnmounted(() => {
   gap: clamp(0.75rem, 2vw, 1.5rem);
   position: relative;
   flex-wrap: wrap;
+  font-family: var(--font-heading);
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
 }
 
 .title-number {
   color: var(--accent);
-  font-size: clamp(1rem, 3vw, 1.8rem);
-  font-family: 'Fira Code', monospace;
+  font-size: clamp(0.75rem, 2.5vw, 1.4rem);
+  font-family: var(--font-heading);
   font-weight: 400;
+  text-shadow: 0 0 12px var(--accent-glow);
 }
 
 .section-title::after {
   content: '';
   flex: 1;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), transparent);
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0px,
+    var(--accent) 8px,
+    transparent 8px,
+    transparent 16px
+  );
   max-width: 400px;
   min-width: 50px;
+  box-shadow: 0 0 8px var(--accent-glow);
 }
 
 .skills-grid {
@@ -342,13 +352,12 @@ onUnmounted(() => {
 .skill-drag-wrapper {
   position: relative;
   cursor: grab;
-  border-radius: 16px;
   will-change: transform;
   touch-action: none;
 }
 
 .skill-drag-wrapper.shifting {
-  transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+  transition: transform 0.2s steps(4);
 }
 
 .skill-drag-wrapper.dragging {
@@ -367,8 +376,7 @@ onUnmounted(() => {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
   pointer-events: none;
 }
 
@@ -376,30 +384,32 @@ onUnmounted(() => {
   content: '';
   position: absolute;
   inset: -3px;
-  border-radius: 18px;
   background: var(--accent);
-  opacity: 0.2;
+  opacity: 0.25;
   pointer-events: none;
   z-index: -1;
+  box-shadow: 0 0 15px var(--accent-glow);
 }
 
 /* Dark/Light mode variables */
 .dark-mode {
-  --bg-primary: #0a192f;
-  --bg-secondary: #112240;
-  --text-primary: #ccd6f6;
-  --text-secondary: #8892b0;
-  --accent: #64ffda;
-  --accent-glow: rgba(100, 255, 218, 0.3);
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #0f0f1a;
+  --bg-tertiary: #151528;
+  --text-primary: #e0ffe0;
+  --text-secondary: #90b090;
+  --accent: #39ff14;
+  --accent-glow: rgba(57, 255, 20, 0.4);
 }
 
 .light-mode {
-  --bg-primary: #f8f9fa;
-  --bg-secondary: #ffffff;
-  --text-primary: #1a202c;
-  --text-secondary: #4a5568;
-  --accent: #0891b2;
-  --accent-glow: rgba(8, 145, 178, 0.3);
+  --bg-primary: #f0faf0;
+  --bg-secondary: #e8f5e8;
+  --bg-tertiary: #dceddc;
+  --text-primary: #1a2e1a;
+  --text-secondary: #3a5e3a;
+  --accent: #00aa33;
+  --accent-glow: rgba(0, 170, 51, 0.25);
 }
 
 /* Tablet */
@@ -415,7 +425,7 @@ onUnmounted(() => {
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
     gap: 1rem;
   }
-  
+
   .section-title::after {
     display: none;
   }
